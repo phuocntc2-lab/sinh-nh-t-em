@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Bé Yêu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background: #fff5f5; font-family: 'Quicksand', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; color: #5a4a4a; }
+        .container { text-align: center; z-index: 2; padding: 30px; background: rgba(255, 255, 255, 0.7); border-radius: 15px; backdrop-filter: blur(5px); width: 80%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #d4a5a5; margin-bottom: 20px; }
+        p { line-height: 1.8; font-size: 1.1rem; margin-bottom: 15px; opacity: 0; transform: translateY(20px); animation: fadeInUp 1.5s forwards; }
+        .p1 { animation-delay: 0.5s; } .p2 { animation-delay: 2s; } .p3 { animation-delay: 3.5s; } .p4 { animation-delay: 5s; font-weight: bold; color: #b5838d; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        /* Hiệu ứng hoa anh đào rơi */
+        .petal { position: absolute; background: #ffc0cb; border-radius: 150% 0 150% 0; animation: fall linear infinite; z-index: 1; }
+        @keyframes fall {
+            0% { transform: translate(0, -10%) rotate(0deg); opacity: 1; }
+            100% { transform: translate(100px, 110vh) rotate(360deg); opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gửi em...</h1>
+        <p class="p1">Chúc em tuổi mới thật nhiều sức khỏe, bình an và những điều nhẹ nhàng.</p>
+        <p class="p2">Anh mong em luôn thoải mái là chính mình, cười nhiều hơn và bớt lo nghĩ hơn.</p>
+        <p class="p3">Anh trân trọng khoảng thời gian mình đã quen nhau và những cảm xúc chân thành đã có.</p>
+        <p class="p4">Mong rằng tuổi mới sẽ dịu dàng với em hơn. ❤️</p>
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="playMusic()" id="btn" style="padding: 10px 20px; border: none; background: #d4a5a5; color: white; border-radius: 20px; cursor: pointer; margin-top: 10px;">Chạm để mở nhạc ♫</button>
+    </div>
+
+    <script>
+        function playMusic() {
+            var music = document.getElementById("bgMusic");
+            music.play();
+            document.getElementById("btn").style.display = "none";
+        }
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = Math.random() * 10 + 5 + 'px';
+            petal.style.height = petal.style.width;
+            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 5000);
+        }
+        setInterval(createPetal, 200);
+    </script>
+</body>
+</html>
